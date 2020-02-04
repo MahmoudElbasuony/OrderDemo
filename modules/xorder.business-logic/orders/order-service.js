@@ -1,9 +1,5 @@
-const {
-    Client
-} = require('pg');
+const { Client } = require('pg');
 const AppConfig = require('../../xorder.common/config');
-const Order = require('../../xorder.models/order');
-const PizzaType = require('../../xorder.models/pizza-type');
 const OrderStatus = require('../../xorder.models/enums/order-status');
 const PizzaSize = require('../../xorder.models/enums/pizza-size');
 
@@ -279,11 +275,11 @@ class OrderService {
     }
 
     dispose() {
-        // if (this.connection) {
-        //     this.connection.end(err => {
-        //         console.error('connection to database closed');
-        //     });
-        // }
+        if (this.connection) {
+            this.connection.end(err => {
+                console.error('connection to database closed');
+            });
+        }
     }
 }
 
